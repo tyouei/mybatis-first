@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace sqlを隔てる -->
+<mapper namespace="test">
+	<!-- ユーザＩＤによってセレクトする。 -->
+	<select id="queryUserbyId" parameterType="int"  resultType="cn.itcast.mybatis.po.User">
+		select * from `user` where id = #{id}
+	</select>
+	<!-- ユーザネームによってセレクトする。 -->
+	<!-- #{id}  -->
+	<!-- ${value} 文字列として使用する。 -->
+	<select id="selectUserByUserName"  parameterType="String" resultType="cn.itcast.mybatis.po.User" >
+	  select * from `user` where username like '%${value}%'
+	</select>
+
+	<!-- User情報への新規登録を行う -->
+	<insert id="insertUser" parameterType="cn.itcast.mybatis.po.User">
+	  insert into `user` (username,birthday,sex,address) values(#{username},#{birthday},#{sex},#{address});
+	</insert>
+</mapper>
