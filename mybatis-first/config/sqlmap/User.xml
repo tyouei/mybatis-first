@@ -17,6 +17,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- User情報への新規登録を行う -->
 	<insert id="insertUser" parameterType="cn.itcast.mybatis.po.User">
+	   <!-- ＤＢに登録されていたＩＤを取得してUser.idに設定する。 -->
+	  <selectKey  keyProperty="id" resultType="int" order="AFTER">
+	    select LAST_INSERT_ID()
+	  </selectKey>
 	  insert into `user` (username,birthday,sex,address) values(#{username},#{birthday},#{sex},#{address});
 	</insert>
+
+	<!-- user 更新 -->
+	<update id="updateUserByUserId" parameterType="cn.itcast.mybatis.po.User">
+		update `user` set username=#{username} ,birthday=#{birthday},sex=#{sex},address=#{address}
+		where id=#{id}
+	</update>
+
+	<!-- ユーザ　削除 -->
+	<delete id="deleteUserByUserId" parameterType="cn.itcast.mybatis.po.User">
+		delete from `user` where id=#{id}
+	</delete>
+
+
+
 </mapper>
