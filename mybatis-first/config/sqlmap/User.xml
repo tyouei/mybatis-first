@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace sqlを隔てる -->
-<mapper namespace="test">
+<mapper namespace="cn.itcast.mybatis.mapper.UserMapper">
 	<!-- ユーザＩＤによってセレクトする。 -->
 	<select id="queryUserbyId" parameterType="int"  resultType="cn.itcast.mybatis.po.User">
 		select * from `user` where id = #{id}
